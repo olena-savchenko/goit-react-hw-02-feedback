@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
-export const FeedbackBox = styled.div`
-  width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+export const StyledAppWrap = styled.div`
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%);
+
+  width: 400px;
+
+  /* border: 2px solid rgba(0, 0, 0, 0.1); */
+  box-shadow: -1px 2px 21px 0px rgba(0, 0, 0, 0.56);
 `;

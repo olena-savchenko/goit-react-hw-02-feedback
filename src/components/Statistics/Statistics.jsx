@@ -1,4 +1,10 @@
 import PropTypes from 'prop-types';
+import {
+  StyledStatList,
+  StyledTypeFeedback,
+  StyledValue,
+} from './Statistics.styled';
+import { TypeStats } from './constants';
 
 export const Statistics = ({
   good,
@@ -8,23 +14,33 @@ export const Statistics = ({
   positivePercentage,
 }) => {
   return (
-    <ul>
+    <StyledStatList>
       <li>
-        <p>Good: {good}</p>
+        <StyledTypeFeedback type={TypeStats.good}>
+          Good : <StyledValue>{good}</StyledValue>
+        </StyledTypeFeedback>
       </li>
       <li>
-        <p>Neutral: {neutral}</p>
+        <StyledTypeFeedback type={TypeStats.neutral}>
+          Neutral : <StyledValue>{neutral}</StyledValue>
+        </StyledTypeFeedback>
       </li>
       <li>
-        <p>Bad: {bad}</p>
+        <StyledTypeFeedback type={TypeStats.bad}>
+          Bad : <StyledValue>{bad}</StyledValue>
+        </StyledTypeFeedback>
       </li>
       <li>
-        <p>Total: {total}</p>
+        <StyledTypeFeedback type={TypeStats.total}>
+          Total : <StyledValue>{total}</StyledValue>
+        </StyledTypeFeedback>
       </li>
       <li>
-        <p>Positive feedback: {positivePercentage}%</p>
+        <StyledTypeFeedback type={TypeStats.percentage}>
+          Positive feedback :<StyledValue>{positivePercentage}%</StyledValue>
+        </StyledTypeFeedback>
       </li>
-    </ul>
+    </StyledStatList>
   );
 };
 
