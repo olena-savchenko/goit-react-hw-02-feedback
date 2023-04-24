@@ -1,6 +1,8 @@
 import { Component } from 'react';
 // import { FeedbackBox } from './App.styled';
-
+import { Statistics } from './Statistics/Statistics';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Section } from './Section/Section';
 export class App extends Component {
   state = {
     good: 0,
@@ -27,44 +29,27 @@ export class App extends Component {
   render() {
     const options = Object.keys(this.state);
     const total = this.countTotalFeedback();
-    const positiveFeedback = this.countPositiveFeedbackPercentage();
-    return (
-      <div>
-        <ul>
-          {options.map(option => {
-            return (
-              <li key={option}>
-                <button
-                  type="button"
-                  name={option}
-                  onClick={this.leaveFeedback}
-                >
-                  {option}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+    const positivePercentage = this.countPositiveFeedbackPercentage();
 
-        <p>Statistics</p>
-        <ul>
-          <li>
-            <p>Good: {this.state.good}</p>
-          </li>
-          <li>
-            <p>Neutral: {this.state.neutral}</p>
-          </li>
-          <li>
-            <p>Bad: {this.state.bad}</p>
-          </li>
-          <li>
-            <p>Total: {total && total}</p>
-          </li>
-          <li>
-            <p>Positive feedback: {total && positiveFeedback}</p>
-          </li>
-        </ul>
-      </div>
+    const { good, neutral, bad } = this.state;
+    return (
+      <>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={options}
+            onLeaveFeedback={this.leaveFeedback}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positivePercentage={positivePercentage}
+          />
+        </Section>
+      </>
     );
   }
 }
