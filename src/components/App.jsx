@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { FeedbackBox } from './App.styled';
+// import { FeedbackBox } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -8,52 +8,63 @@ export class App extends Component {
     bad: 0,
   };
 
-  handleIncrement = event => {
-    // console.log(c);
-    // const targetValue = event.target;
-    this.setState(prevState => {
-      console.log('Значення prevState: ', prevState);
-      console.log('event.target.name: ', [event.target]);
-      console.log(
-        'prevState[event.target.] + 1: ',
-        prevState[event.target] + 1
-      );
-      return { [event.target]: prevState[event.target] + 1 };
-    });
+  leaveFeedback = e => {
+    this.setState(prevState => ({
+      [e.target.name]: prevState[e.target.name] + 1,
+    }));
+  };
+
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const totalFeedback = this.countTotalFeedback();
+    return Math.round((this.state.good * 100) / totalFeedback);
   };
 
   render() {
+    const options = Object.keys(this.state);
+    const total = this.countTotalFeedback();
+    const positiveFeedback = this.countPositiveFeedbackPercentage();
     return (
-      <FeedbackBox>
-        <p>Please leave feedback</p>
-        <button
-          type="button"
-          name={this.state.good}
-          onClick={this.handleIncrement}
-        >
-          Good
-        </button>
-        <button
-          type="button"
-          name={this.state.neutral}
-          onClick={this.handleIncrement}
-        >
-          Neutral
-        </button>
-        <button
-          type="button"
-          name={this.state.bad}
-          onClick={this.handleIncrement}
-        >
-          Bad
-        </button>
+      <div>
+        <ul>
+          {options.map(option => {
+            return (
+              <li key={option}>
+                <button
+                  type="button"
+                  name={option}
+                  onClick={this.leaveFeedback}
+                >
+                  {option}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
         <p>Statistics</p>
-        <div>
-          <span>Good: {this.state.good}</span>
-          <span>Neutral: {this.state.neutral}</span>
-          <span>Bad: {this.state.bad}</span>
-        </div>
-      </FeedbackBox>
+        <ul>
+          <li>
+            <p>Good: {this.state.good}</p>
+          </li>
+          <li>
+            <p>Neutral: {this.state.neutral}</p>
+          </li>
+          <li>
+            <p>Bad: {this.state.bad}</p>
+          </li>
+          <li>
+            <p>Total: {total && total}</p>
+          </li>
+          <li>
+            <p>Positive feedback: {total && positiveFeedback}</p>
+          </li>
+        </ul>
+      </div>
     );
   }
 }
