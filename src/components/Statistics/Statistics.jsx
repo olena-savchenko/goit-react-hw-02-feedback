@@ -37,7 +37,7 @@ export const Statistics = ({
       </li>
       <li>
         <StyledTypeFeedback type={TypeStats.percentage}>
-          Positive feedback :<StyledValue>{positivePercentage}%</StyledValue>
+          Positive feedback : <StyledValue>{positivePercentage}%</StyledValue>
         </StyledTypeFeedback>
       </li>
     </StyledStatList>
