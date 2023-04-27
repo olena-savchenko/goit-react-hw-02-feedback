@@ -5,15 +5,16 @@ import {
   StyledValue,
 } from './Statistics.styled';
 import { TypeStats } from './constants';
+import { Notification } from 'components/Notification/Notification';
 
 export const Statistics = ({
   good,
   neutral,
   bad,
-  total,
-  positivePercentage,
+  total = 0,
+  positivePercentage = 0,
 }) => {
-  return (
+  return total ? (
     <StyledStatList>
       <li>
         <StyledTypeFeedback type={TypeStats.good}>
@@ -41,6 +42,8 @@ export const Statistics = ({
         </StyledTypeFeedback>
       </li>
     </StyledStatList>
+  ) : (
+    <Notification message="There is no feedback" />
   );
 };
 

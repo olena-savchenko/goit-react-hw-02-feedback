@@ -19,7 +19,7 @@ export const StyledTypeFeedback = styled.p`
       case TypeStats.bad:
         return '#c73535';
       case TypeStats.total:
-        return '#1b17df';
+        return '#8f9290';
       case TypeStats.percentage:
         return '#4aa879';
       default:
