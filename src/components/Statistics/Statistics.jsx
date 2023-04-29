@@ -4,7 +4,7 @@ import {
   StyledTypeFeedback,
   StyledValue,
 } from './Statistics.styled';
-import { TypeStats } from './constants';
+import { TypeStats } from '../../constants/constants';
 import { Notification } from 'components/Notification/Notification';
 
 export const Statistics = ({

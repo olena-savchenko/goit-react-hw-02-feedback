@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TypeStats } from './constants';
+import { TypeStats } from '../../constants/constants';
 
 export const StyledStatList = styled.ul`
   display: flex;
